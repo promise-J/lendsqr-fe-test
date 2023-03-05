@@ -8,6 +8,10 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import Users from "./pages/users/Users";
+import Notfound from "./pages/notfound/Notfound";
+import User from "./pages/users/User";
+import "@fontsource/work-sans"
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +31,14 @@ function App() {
         {
           index: true,
           element: <Dashboard />
+        },
+        {
+          path: 'users',
+          element: <Users />
+        },
+        {
+          path: 'user/:id',
+          element: <User />
         }
       ]
     },
@@ -36,7 +48,7 @@ function App() {
     },
     {
       path: "*",
-      element: <h1>Not found</h1>,
+      element: <Notfound />
     },
   ]);
   return <RouterProvider router={router} />;

@@ -43,38 +43,6 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="dashboard-table">
-          <div className="table-form">
-            <div className="form-input">
-              <label>Organisation</label>
-              <select name="org" id="org">
-                <option value="">Select</option>
-              </select>
-            </div>
-            <div className="form-input">
-              <label>Username</label>
-              <input type="text" placeholder="User" />
-            </div>
-            <div className="form-input">
-              <label>Email</label>
-              <input type="text" placeholder="Email" />
-            </div>
-            <div className="form-input">
-              <label>Date</label>
-              <input type="text" placeholder="Date" />
-            </div>
-            <div className="form-input">
-              <label>Phone Number</label>
-              <input type="text" placeholder="Phone Number" />
-            </div>
-            <div className="form-input">
-              <label>Status</label>
-              <input type="text" placeholder="Status" />
-            </div>
-            <div className="form-input btn">
-              <button>Reset</button>
-              <button>Filter</button>
-            </div>
-          </div>
           <thead>
             <tr>
               <th>
@@ -104,7 +72,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="inactive">Inactive</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -112,7 +82,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="pending">Pending</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -120,7 +92,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="blacklist">Blacklisted</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -128,7 +102,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="pending">Pending</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -136,7 +112,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="active">Active</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -144,7 +122,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="active">Active</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -152,7 +132,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="blacklist">Blacklisted</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -160,7 +142,9 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="inactive">Inactive</span>
+              </td>
             </tr>
             <tr>
               <td>None</td>
@@ -168,8 +152,11 @@ const Dashboard = () => {
               <td>Adedeji@gmail.com</td>
               <td>08135353535</td>
               <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
+              <td>
+                <span className="inactive">Inactive</span>
+              </td>
             </tr>
+           
           </tbody>
         </div>
         <div className="pagination">
