@@ -1,8 +1,14 @@
 import React from "react";
-import LoginImg from "../images/pablo-sign-in.png";
-import Logo from "../images/Union.png";
+import LoginImg from "../../images/pablo-sign-in.png";
+import Logo from "../../images/Union.png";
+import {useNavigate} from 'react-router-dom'
+import './login.scss'
 
 const Login = () => {
+    const navigate = useNavigate()
+    const login = ()=>{
+        navigate("/dashboard")
+    }
   return (
     <div className="login">
       <div className="left">
@@ -26,7 +32,7 @@ const Login = () => {
               <input type="text" placeholder="Password" />
             </div>
             <p className="forget">FORGOT PASSWORD?</p>
-            <button>LOG IN</button>
+            <button onClick={login}>LOG IN</button>
           </div>
       </div>
     </div>
