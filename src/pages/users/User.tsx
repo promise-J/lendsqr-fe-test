@@ -4,63 +4,44 @@ import { IoIosStarOutline } from "react-icons/io";
 import axios from "axios";
 import "./user.scss";
 import Loading from "../../components/Loading";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import IUser from "../../interface/IUser";
 
 const User = () => {
-    const [user, setUser] = useState<IUser | null>(null)
-    // const [loading, setLoading] = useState(false)
+  const [user, setUser] = useState<IUser | null>(null);
+  // const [loading, setLoading] = useState(false)
   const { id } = useParams();
-//   const navigate = useNavigate()
 
-//   useEffect(() => {
-//     const getUser = async () => {
-//       try {
-//         setLoading(true)
-//         const { data } = await axios.get(
-//           `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
-//         );
-//         console.log(data);
-//         setUser(data)
-//         setLoading(false)
-//       } catch (error) {
-//         navigate('/dashboard/users')
-//       }
-//     };
-//     getUser();
-//   }, [id, navigate]);
+  useEffect(() => {
+    // ` https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
+    const getUser = async() => {
+      const userId = `user-${id}`;
+      // console.log(userId)
+      const storedUsersString = localStorage.getItem("users");
+      const storedUsersMap = storedUsersString
+        ? new Map(JSON.parse(storedUsersString))
+        : new Map();
 
-useEffect(() => {
+      if (storedUsersMap.has(userId)) {
+        const data = storedUsersMap.get(userId)
+        setUser(data as IUser)
+      } else {
+        const { data } = await axios.get(` https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`);
+        storedUsersMap.set(userId, data);
+        setUser(data)
+      }
 
-      const fetchUser = async () => {
-        const {data} = await axios.get(` https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`);
-        // localStorage.setItem(`user-${id}`, JSON.stringify(data));
-        // setUser(user);
-        return data
-      };
-    const userFromStorage = JSON.parse(localStorage.getItem("newUser") || "{}")
-    if(Object.keys(userFromStorage).length===0){
-        fetchUser()
-        .then(usr=> {
-            const user: {id: string | undefined, user: IUser} = {id, user: usr}
-            setUser(usr)
-            console.log(user)
-        })
-    }else{
-        console.log('not empty')
-    }
-    // console.log(userFromStorage, 'lsdata')
+      localStorage.setItem(
+        "users",
+        JSON.stringify(Array.from(storedUsersMap.entries()))
+      );
+      // console.log(storedUsersMap, "the stored Map");
+    };
+    getUser();
+  }, [id]);
 
-      // Fetch user from external API and store it in Local Storage
-    //   const fetchUser = async () => {
-    //     const {data} = await axios.get(` https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`);
-    //     localStorage.setItem(`user-${id}`, JSON.stringify(data));
-    //     setUser(user);
-    //   };
-  }, [id, user]);
-
-  if(!user){
-      return <Loading />
+  if (!user) {
+    return <Loading />;
   }
 
   return (
@@ -69,7 +50,9 @@ useEffect(() => {
         <div className="header">
           <div className="left">
             <div className="icon-container">
-              <MdKeyboardBackspace size={36} style={{ cursor: "pointer" }} />
+              <Link className="link" to="/dashboard/users">
+                <MdKeyboardBackspace size={36} style={{ cursor: "pointer" }} />
+              </Link>
               <span>Back To Users</span>
             </div>
             <h3>User Details</h3>
@@ -92,9 +75,9 @@ useEffect(() => {
           <div className="user-tier">
             <span>User's Tier</span>
             <div className="icon">
-              <IoIosStarOutline />
-              <IoIosStarOutline />
-              <IoIosStarOutline />
+              <IoIosStarOutline className="ico" />
+              <IoIosStarOutline className="ico" />
+              <IoIosStarOutline className="ico" />
             </div>
           </div>
           <div className="user-amount">
@@ -118,7 +101,9 @@ useEffect(() => {
             <div className="container">
               <div className="box">
                 <span>FULL NAME</span>
-                <h3>{user?.profile.firstName} {" "} {user?.profile.lastName}</h3>
+                <h3>
+                  {user?.profile.firstName} {user?.profile.lastName}
+                </h3>
               </div>
               <div className="box">
                 <span>PHONE NUMBER</span>
@@ -173,7 +158,10 @@ useEffect(() => {
               </div>
               <div className="box">
                 <span>MONTHLY INCONE</span>
-                <h3>#{user?.education.monthlyIncome[0]} - #{user?.education.monthlyIncome[1]}</h3>
+                <h3>
+                  #{user?.education.monthlyIncome[0]} - #
+                  {user?.education.monthlyIncome[1]}
+                </h3>
               </div>
               <div className="box">
                 <span>LOAN REPAYMENT</span>
@@ -199,7 +187,9 @@ useEffect(() => {
             <div className="container">
               <div className="box">
                 <span>FULL NAME</span>
-                <h3>{user?.guarantor.firstName} {" "} {user?.guarantor.lastName}</h3>
+                <h3>
+                  {user?.guarantor.firstName} {user?.guarantor.lastName}
+                </h3>
               </div>
               <div className="box">
                 <span>PHONE NUMBER</span>
@@ -215,7 +205,9 @@ useEffect(() => {
               </div>
               <div className="box">
                 <span>FULL NAME</span>
-                <h3>{user?.guarantor.firstName} {" "} {user?.guarantor.lastName}</h3>
+                <h3>
+                  {user?.guarantor.firstName} {user?.guarantor.lastName}
+                </h3>
               </div>
               <div className="box">
                 <span>PHONE NUMBER</span>

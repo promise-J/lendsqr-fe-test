@@ -7,20 +7,27 @@ import {FaRegHandshake} from 'react-icons/fa'
 import {MdOutlineEnergySavingsLeaf} from 'react-icons/md'
 import {GiReceiveMoney} from 'react-icons/gi'
 import {HiUser} from 'react-icons/hi'
+import {AiOutlineClose} from 'react-icons/ai'
 import {Link} from 'react-router-dom'
+import ISidebarProp from '../interface/ISidebarProp'
 
 
-const Sidebar = () => {
+const Sidebar = ({showMenu, setShowMenu}: ISidebarProp) => {
+  const handleClose = ()=>{
+    setShowMenu(false)
+  }
   return (
-    <div className="sidebar">
+    // <div className="sidebar">
+    <div className="sidebar" style={{width: showMenu ? '150vw' : '0'}}>
+      <AiOutlineClose className='close' onClick={handleClose} />
       {/* <div className="wrapper"> */}
       <div className="item switch-org">
         <GiHandBag />
-        <select className="org" name="organisation" id="organisation">
+        <select onChange={handleClose} className="org" name="organisation" id="organisation">
           <option value="organisation">Switch Organisation</option>
         </select>
       </div>
-      <Link className="link" to="/dashboard">
+      <Link onClick={handleClose} className="link" to="/dashboard">
       <div className="item dashboard-org">
         <GoHome />
         Dashboard
@@ -28,7 +35,7 @@ const Sidebar = () => {
       </Link>
       <p>CUSTOMERS</p>
       <ul>
-        <Link className='link' to='users'>
+        <Link onClick={handleClose} className='link' to='users'>
         <li className="active">
           <HiOutlineUsers className="icon className='icon'" />
           Users

@@ -158,8 +158,8 @@ const Users = () => {
           </div>
           <div className="tbody">
             {users.slice(lowRange, highRange).map((el) => (
-              <Link className="link" to={`/dashboard/user/${el.id}`}>
-                <div className="tr" key={el.id}>
+              <Link key={el.id} className="link" to={`/dashboard/user/${el.id}`}>
+                <div className="tr">
                   <div className="td">None</div>
                   <div className="td">{el.userName}</div>
                   <div className="td">{el.email.slice(0, 9)}..</div>

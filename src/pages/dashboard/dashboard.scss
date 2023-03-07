@@ -93,6 +93,7 @@
     // height: fit-content;
     box-shadow: 2px 2px 5px 5px rgb(231, 230, 230);
     width: 96%;
+    // width: 196%;
     overflow-x: auto;
     // min-height: 500px;
     position: relative;
@@ -280,6 +281,19 @@
 
 .wrapper::-webkit-scrollbar {
   display: none;
+}
+
+@media screen and (max-width: 700px){
+  .wrapper{
+    .dashboard-table{
+      .tbody{
+        width: 200%;
+      }
+      .thead{
+        width: 200%;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 550px) {
