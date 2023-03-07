@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, ChangeEvent, MouseEvent } from "react";
 import { HiOutlineUsers } from "react-icons/hi";
 import { FaUsers } from "react-icons/fa";
 import { AiOutlineFileSync } from "react-icons/ai";
@@ -6,8 +6,67 @@ import { BsDatabase } from "react-icons/bs";
 import { CgSortAz } from "react-icons/cg";
 import { AiOutlineRight } from "react-icons/ai";
 import { AiOutlineLeft } from "react-icons/ai";
+import IUser from "../../interface/IUser";
+import { setDate, sortPagination } from "../../util/User";
+import Loading from "../../components/Loading";
+import { Link } from "react-router-dom";
+import PaginateButton from "../../components/PaginateButton";
 
 const Users = () => {
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [loading, setLoading] = useState(false);
+  const USERPERPAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [lowRange, highRange] = sortPagination(currentPage, USERPERPAGE);
+
+  const handleButtonNavigation = (dir: string) => {
+    if (dir === "left") {
+      if (lowRange <= 0) return;
+      setCurrentPage((el) => el - 1);
+    }
+    if (dir === "right") {
+      if (highRange >= users.length) return;
+      setCurrentPage((el) => el + 1);
+    }
+  };
+
+  useEffect(() => {
+    const getUsers = async () => {
+      setLoading(true);
+      fetch("https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users")
+        .then((users) => users.json())
+        .then((users) => {
+          setLoading(false);
+          setUsers(users);
+        })
+        .catch((err) => console.log(err));
+    };
+    getUsers();
+  }, []);
+
+  function getPageNumber() {
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(users.length / USERPERPAGE); i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  }
+
+  const handleSelectPage = (e: ChangeEvent<HTMLElement>)=>{
+    const target = e.target as HTMLSelectElement
+    setCurrentPage(+target.value)
+  }
+
+  const handlePageClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement
+    setCurrentPage(+target.value);
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -18,7 +77,7 @@ const Users = () => {
               <HiOutlineUsers />
             </div>
             <p className="title">USERS</p>
-            <p className="value">2,453</p>
+            <p className="value">{users?.length}</p>
           </div>
           <div className="user-box userbox-2">
             <div className="icon-box">
@@ -75,122 +134,81 @@ const Users = () => {
               <button>Filter</button>
             </div>
           </div>
-          <thead>
-            <tr>
-              <th>
+          <div className="thead">
+            <div className="tr">
+              <div>
                 Organization <CgSortAz size={22} />
-              </th>
-              <th>
+              </div>
+              <div className="th">
                 Username <CgSortAz size={22} />
-              </th>
-              <th>
+              </div>
+              <div className="th">
                 Email <CgSortAz size={22} />
-              </th>
-              <th>
+              </div>
+              <div className="th">
                 Phone Number <CgSortAz size={22} />
-              </th>
-              <th>
+              </div>
+              <div className="th">
                 Date Joined <CgSortAz size={22} />
-              </th>
-              <th>
+              </div>
+              <div className="th">
                 Status <CgSortAz size={22} />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-            <tr>
-              <td>None</td>
-              <td>None</td>
-              <td>Adedeji@gmail.com</td>
-              <td>08135353535</td>
-              <td>May 12, 2022 10:00 AM</td>
-              <td>Inactive</td>
-            </tr>
-          </tbody>
+              </div>
+            </div>
+          </div>
+          <div className="tbody">
+            {users.slice(lowRange, highRange).map((el) => (
+              <Link className="link" to={`/dashboard/user/${el.id}`}>
+                <div className="tr" key={el.id}>
+                  <div className="td">None</div>
+                  <div className="td">{el.userName}</div>
+                  <div className="td">{el.email.slice(0, 9)}..</div>
+                  <div className="td">{el.phoneNumber}</div>
+                  <div className="td">{setDate(el.createdAt)}</div>
+                  <div className="td">
+                    <span className="active">Active</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
         <div className="pagination">
           <div className="left">
             <span>Showing</span>
-            <select name="paginate" id="paginate">
-              <option value="100">100</option>
+            <select
+              name="paginate"
+              id="paginate"
+              value={currentPage}
+              onChange={(e) => handleSelectPage(e)}
+            >
+              {getPageNumber().map((pageNumber) => (
+                <option key={pageNumber} value={pageNumber}>
+                  {pageNumber}
+                </option>
+              ))}
             </select>
             <span>Out of 100</span>
           </div>
           <div className="right">
-            <button>
+            <button
+              className="ctrl"
+              onClick={() => handleButtonNavigation("left")}
+            >
               <AiOutlineLeft />
             </button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>...</button>
-            <button>15</button>
-            <button>16</button>
-            <button>
+            {getPageNumber().map((pageNumber) => (
+              <PaginateButton
+                key={pageNumber}
+                currentPage={currentPage}
+                handlePageClick={handlePageClick}
+                pageNumber={pageNumber}
+              />
+            ))}
+            <button
+              className="ctrl"
+              onClick={() => handleButtonNavigation("right")}
+            >
               <AiOutlineRight />
             </button>
           </div>

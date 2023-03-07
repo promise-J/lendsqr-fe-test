@@ -9,6 +9,17 @@
     //   margin-left: 55px;
     margin-top: 45px;
   }
+  img.loading {
+    height: 100px;
+    width: 100px;
+    animation: blink 2s infinite;
+    opacity: .3;
+  }
+  .link{
+    text-decoration: none;
+    color: inherit;
+  }
+ 
   .users-box {
     width: 100%;
     margin-top: 20px;
@@ -89,7 +100,7 @@
     // padding-bottom: 30px;
     .table-form {
       height: 96%;
-      width: 27%;
+      width: 29%;
       background-color: white;
       box-shadow: 2px 2px 5px 5px rgb(247, 247, 247);
       position: absolute;
@@ -143,11 +154,11 @@
         }
       }
     }
-    thead {
+    .thead {
       width: 100%;
       height: 60px;
       display: flex;
-      tr {
+      .tr {
         // background-color: #000000;
         width: 100%;
         display: flex;
@@ -155,19 +166,19 @@
         justify-content: space-around;
         font-size: 14px;
         font-weight: 600;
-        th {
+        .th {
           display: flex;
           align-items: center;
           gap: 6px;
         }
       }
     }
-    tbody {
+    .tbody {
       display: flex;
       flex-direction: column;
       flex: 1;
       width: 100%;
-      tr {
+      .tr {
         // background: green;
         width: 100%;
         display: flex;
@@ -177,30 +188,32 @@
         font-weight: 600;
         height: 45px;
         gap: 6px;
-        td {
+        cursor: pointer;
+        .td {
           display: flex;
           align-items: center;
           justify-content: center;
           flex: 1;
           opacity: 0.6;
         }
-        td:nth-child(6) span {
+        .td:nth-child(6) span {
           padding: 5px 10px;
           border-radius: 20px;
+          cursor: pointer;
         }
-        td:nth-child(6) span.inactive {
+        .td:nth-child(6) span.inactive {
           background: #e6e6e6;
           color: #545F7D;
         }
-        td:nth-child(6) span.active {
+        .td:nth-child(6) span.active {
           background: #c8fad6;
           color: #39cd62;
         }
-        td:nth-child(6) span.blacklist {
+        .td:nth-child(6) span.blacklist {
           background: #fadee5;
           color: #e4033b;
         }
-        td:nth-child(6) span.pending {
+        .td:nth-child(6) span.pending {
           background: #f5e7bb;
           color: #e9b200;
         }
@@ -213,6 +226,8 @@
     margin: 30px auto;
     width: 90%;
     display: flex;
+    flex-direction: column;
+    gap: 15px;
     align-items: center;
     justify-content: space-between;
     .left {
@@ -237,9 +252,21 @@
         align-items: center;
         justify-content: center;
         outline: none;
-        font-weight: 600;
-        color: #213f7d;
         cursor: pointer;
+        border: none;
+        background-color: white;
+        opacity: 0.4;
+      }
+      button.ctrl{
+        font-weight: 600;
+        opacity: 1;
+        border: 1px solid #bdcdec;
+        color: #213f7d;
+      }
+      button.active{
+        font-weight: 600;
+        opacity: 1;
+        color: #213f7d;
       }
     }
   }
@@ -269,5 +296,20 @@
         flex: 1;
       }
     }
+  }
+}
+
+
+
+@keyframes blink {
+  0% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  95% {
+    transform: scale(1);
   }
 }

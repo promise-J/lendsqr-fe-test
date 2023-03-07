@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
+  font-family: "Work Sans";
   header {
     height: 100px;
     // height: 50%;
@@ -78,7 +79,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        .profile-pop{
+        .profile-pop {
           // background-color: red;
           box-shadow: 2px 2px 2px 4px rgb(207, 203, 203);
           color: white;
@@ -90,14 +91,14 @@
           position: absolute;
           right: 25px;
           top: 75px;
-          .close{
+          .close {
             position: absolute;
             top: 8px;
             left: 5px;
             cursor: pointer;
             font-weight: 600;
           }
-          li{
+          li {
             color: #213f7d;
             text-decoration: underline;
             padding: 5px;
@@ -113,12 +114,12 @@
           margin-right: 30px;
           cursor: pointer;
         }
-        .img-wrap{
-          border: 2px solid #213f7d;
+        .img-wrap {
+          // border: 2px solid #213f7d;
           border-radius: 50%;
+          display: flex;
           justify-content: center;
           align-items: center;
-          display: none;
           cursor: pointer;
           img {
             border-radius: 50%;
@@ -147,16 +148,20 @@
     display: flex;
     width: 100%;
     .sidebar {
+      .link {
+        text-decoration: none;
+        color: inherit;
+      }
       flex: 1;
       height: 100%;
       height: 100%;
       width: 100%;
       color: #213f7d;
+      font-family: "Work Sans";
       .item {
         background: white;
         width: 100%;
         font-weight: 400;
-        font-family: Work San;
         font-size: 16px;
         padding: 10px 10px;
         display: flex;
@@ -227,14 +232,14 @@
 }
 
 @media screen and (max-width: 900px) {
-  .dashboard{
-    header{
+  .dashboard {
+    header {
       flex-direction: column;
-      .left{
+      .left {
         // background-color: blueviolet;
         flex: 1;
       }
-      .right{
+      .right {
         // flex-direction: column;
         // background: blue;
         align-items: center;
@@ -242,49 +247,49 @@
         padding: 10px;
         gap: 10px;
         flex: 5;
-        .search-container{
+        .search-container {
           // background-color: pink;
-        margin-left: 0px;
-        width: 300px;
+          margin-left: 0px;
+          width: 300px;
           // padding: 10px;
         }
-        .details{
+        .details {
           // background: red;
           margin-right: 0;
         }
       }
     }
-    main{
-      .sidebar{
+    main {
+      .sidebar {
         display: none;
       }
     }
   }
 }
 
-@media screen and (max-width: 600px){
-  .dashboard{
-    header{
+@media screen and (max-width: 600px) {
+  .dashboard {
+    header {
       flex-direction: row;
-      .right{
+      .right {
         justify-content: end;
-      .search-container{
-        display: none;
-      }
-      .details{
-        .doc{
+        .search-container {
           display: none;
         }
-        .icon{
-          display: none;
+        .details {
+          .doc {
+            display: none;
+          }
+          .icon {
+            display: none;
+          }
+          .username {
+            display: none;
+          }
+          .img-wrap {
+            display: flex;
+          }
         }
-        .username{
-          display: none;
-        }
-        .img-wrap{
-          display: flex;
-        }
-      }
       }
     }
   }

@@ -3,7 +3,7 @@
   height: 100%;
   color: #213f7d;
   overflow: scroll;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   .header {
     display: flex;
     align-items: center;
@@ -88,8 +88,10 @@
         align-items: center;
         justify-content: center;
         img {
-          width: 50%;
-          height: 50%;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: contain;
         }
       }
       .username {
@@ -171,7 +173,7 @@
     .detail {
       width: 100%;
       padding: 20px;
-      > h3{
+      > h3 {
         margin: 20px;
       }
       .container {
@@ -183,20 +185,20 @@
         flex-direction: column;
         flex-wrap: wrap;
         .box {
-        //   background: green;
+          //   background: green;
           padding: 20px;
           flex: 1;
           display: flex;
           flex-direction: column;
-        //   align-items: center;
+          //   align-items: center;
           justify-content: center;
           gap: 15px;
-          span{
+          span {
             font-size: 12px;
             font-weight: 400;
             color: black;
           }
-          h3{
+          h3 {
             font-size: 16px;
             font-weight: 600;
           }
@@ -216,8 +218,8 @@
         // gap: 2px;
       }
     }
-    .tabs{
-        flex-direction: row;
+    .tabs {
+      flex-direction: row;
     }
     .details {
       .detail {
@@ -231,5 +233,9 @@
         }
       }
     }
+    .pagination{
+      flex-direction: row;
+    }
   }
 }
+
