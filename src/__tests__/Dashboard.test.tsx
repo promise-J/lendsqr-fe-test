@@ -3,7 +3,9 @@ import Dashboard from "../pages/dashboard/Dashboard"
 
 describe('Dashboard', ()=>{
     it('should work', ()=>{
-        render(<Dashboard />)
+        const {getByRole} = render(<Dashboard />)
         expect(2).toBe(2)
     })
 })
+
+export {}

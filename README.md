@@ -44,3 +44,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+## About Project:
+
+The project is of four pages. Login, Dashboard, Users and User Details page.
+
+It covers: 
+- responsiveness to web design patterns across all media types
+- good naming convention for variables and resources
+- caching implementation
+- visual fidelity
