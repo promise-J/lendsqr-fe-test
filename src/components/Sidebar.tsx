@@ -18,7 +18,7 @@ const Sidebar = ({showMenu, setShowMenu}: ISidebarProp) => {
   }
   return (
     // <div className="sidebar">
-    <div className="sidebar" style={{width: showMenu ? '150vw' : '0'}}>
+    <div className="sidebar" style={{width: showMenu ? '120vw' : '0'}}>
       <AiOutlineClose className='close' onClick={handleClose} />
       {/* <div className="wrapper"> */}
       <div className="item switch-org">
@@ -41,27 +41,27 @@ const Sidebar = ({showMenu, setShowMenu}: ISidebarProp) => {
           Users
         </li>
         </Link>
-        <li>
+        <li onClick={handleClose}>
           <FaUsers className="icon" />
           Guarantors
         </li>
-        <li>
+        <li onClick={handleClose}>
           <FcMoneyTransfer className="icon" />
           Loans
         </li>
-        <li>
+        <li onClick={handleClose}>
           <FaRegHandshake className="icon" />
           Decision Models
         </li>
-        <li>
+        <li onClick={handleClose}>
           <MdOutlineEnergySavingsLeaf className="icon" />
           Savings
         </li>
-        <li>
+        <li onClick={handleClose}>
           <GiReceiveMoney className="icon" />
           Loan Requests
         </li>
-        <li>
+        <li onClick={handleClose}>
           <HiUser className="icon" />
           Whitelist
         </li>
